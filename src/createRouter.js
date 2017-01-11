@@ -1,4 +1,4 @@
-import Route from 'route-parser'
+import RouteParser from 'route-parser'
 import history from './history'
 
 const createRouter = (routes) => {
@@ -31,7 +31,7 @@ const createRouter = (routes) => {
   const routeData = Object.keys(routes)
     .map(key => [key, routes[key]])
     .map(([key, value]) => ({
-      route: new Route(key),
+      route: new RouteParser(key),
       behavior: createRouteBehavior(value)
     }))
 
@@ -42,7 +42,6 @@ const createRouter = (routes) => {
       const data = routeData[i].route.match(location.pathname)
       if (data) {
         routeData[i].behavior({ target, data })
-
         break
       }
     }
