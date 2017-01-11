@@ -3,16 +3,16 @@
 </a>
 
 <script>
-  import history from './history.js'
+  import history from './history'
   
   export default {
-    data() {
+    data () {
       return {
         to: '/',
       }
     },
     methods: {
-      navigate(event, path) {
+      navigate (event, path) {
         if (event && event.preventDefault) event.preventDefault()
         if (path) {
           history.push(path)

@@ -6,7 +6,8 @@
   "author": "Jikkai Xiao <sonne@asaki.me>",
   "license": "MIT",
   "scripts": {
-    "build": "rollup -c ./rollup.config.js"
+    "build": "rollup -c ./rollup.config.js",
+    "lint": "eslint --ext .js ./src"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,10 @@
   ],
   "devDependencies": {
     "babel-preset-es2015-rollup": "^3.0.0",
+    "eslint": "^3.12.2",
+    "eslint-config-standard": "^6.2.1",
+    "eslint-plugin-promise": "^3.4.0",
+    "eslint-plugin-standard": "^2.0.1",
     "rollup": "^0.41.1",
     "rollup-plugin-babel": "^2.7.1",
     "rollup-plugin-commonjs": "^7.0.0",
@@ -32,7 +37,7 @@
     "rollup-plugin-uglify": "^1.0.1"
   },
   "dependencies": {
-    "history": "^4.5.0",
+    "history": "^4.5.1",
     "route-parser": "^0.0.5"
   }
 }

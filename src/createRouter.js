@@ -1,14 +1,18 @@
 import Route from 'route-parser'
 import history from './history'
 
-export default (routes) => {
+const createRouter = (routes) => {
   let content
   let unlisten
   let target
 
   const createRouteBehavior = (route) => {
     if (typeof route === 'function') {
-      return input => (content = new route(input))
+      return (options) => {
+        // eslint-disable-next-line new-cap
+        content = new route(options)
+        return content
+      }
     }
 
     if (typeof route === 'object') {
@@ -21,7 +25,7 @@ export default (routes) => {
       return () => history.push(route)
     }
 
-    return () => { }
+    return () => {}
   }
 
   const routeData = Object.keys(routes)
@@ -34,7 +38,7 @@ export default (routes) => {
   const handleRouteChange = (location) => {
     if (content && content.teardown) content.teardown()
 
-    for (let i = 0; i < routeData.length; i += 1) {
+    for (let i = 0; i < routeData.length; i++) {
       const data = routeData[i].route.match(location.pathname)
       if (data) {
         routeData[i].behavior({ target, data })
@@ -45,12 +49,12 @@ export default (routes) => {
   }
 
   return {
-    start: (location, targetElement) => {
+    start (location, targetElement) {
       target = targetElement
       unlisten = history.listen(handleRouteChange)
       handleRouteChange(history.location)
     },
-    teardown: () => {
+    teardown () {
       if (unlisten) {
         unlisten()
         unlisten = undefined
@@ -58,3 +62,5 @@ export default (routes) => {
     }
   }
 }
+
+export default createRouter
