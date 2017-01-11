@@ -12,10 +12,11 @@
       }
     },
     methods: {
-      navigate (event, path) {
+      navigate (event, to) {
         if (event && event.preventDefault) event.preventDefault()
-        if (path) {
-          history.push(path)
+        if (to) {
+          const { pathname } = history.location
+          if (pathname !== to) history.push(to)
         }
       }
     }
