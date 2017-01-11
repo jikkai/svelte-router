@@ -1,0 +1,38 @@
+{
+  "name": "svelte-router",
+  "version": "0.0.1",
+  "description": "A simple router for Svelte",
+  "main": "lib/index.js",
+  "author": "Jikkai Xiao <sonne@asaki.me>",
+  "license": "MIT",
+  "scripts": {
+    "build": "rollup -c ./rollup.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jikkai/svelte-router.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jikkai/svelte-router/issues"
+  },
+  "homepage": "https://jikkai.github.io/svelte-router",
+  "keywords": [
+    "svelte",
+    "router",
+    "plugins"
+  ],
+  "devDependencies": {
+    "babel-preset-es2015-rollup": "^3.0.0",
+    "rollup": "^0.41.1",
+    "rollup-plugin-babel": "^2.7.1",
+    "rollup-plugin-commonjs": "^7.0.0",
+    "rollup-plugin-node-resolve": "^2.0.0",
+    "rollup-plugin-replace": "^1.1.1",
+    "rollup-plugin-svelte": "^1.6.0",
+    "rollup-plugin-uglify": "^1.0.1"
+  },
+  "dependencies": {
+    "history": "^4.5.0",
+    "route-parser": "^0.0.5"
+  }
+}

@@ -1,0 +1,23 @@
+<a href='/#{{ to }}' on:click='navigate(event, to)'>
+  {{ yield }}
+</a>
+
+<script>
+  import history from './history.js'
+  
+  export default {
+    data() {
+      return {
+        to: '/',
+      }
+    },
+    methods: {
+      navigate(event, path) {
+        if (event && event.preventDefault) event.preventDefault()
+        if (path) {
+          history.push(path)
+        }
+      }
+    }
+  }
+</script>
