@@ -2,7 +2,7 @@
 ![version](https://img.shields.io/npm/v/svelte-router.svg)
 ![license](https://img.shields.io/github/license/mashape/apistatus.svg)
 
-> [WIP]Router component for Svelte
+> Router component for Svelte
 
 ## Installation
 Using npm:
@@ -45,9 +45,6 @@ $ yarn add svelte-router
       Link
     }
   }
-</script>
-
-
 </script>
 ```
 
