@@ -25,6 +25,8 @@ $ yarn add svelte-router
   import SvelteRouter from 'svelte-router'
   import Home from './Home.html'
 
+  const { createRouter, Link } = SvelteRouter
+
   const router = createRouter({
     '/': Home
   })

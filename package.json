@@ -8,7 +8,8 @@
   "scripts": {
     "build": "rollup -c ./rollup.config.js",
     "dev": "rollup -c ./rollup.config.js -w",
-    "lint": "eslint --ext .js ./src"
+    "lint": "eslint --ext .js ./src",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
