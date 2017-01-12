@@ -7,6 +7,7 @@
   "license": "MIT",
   "scripts": {
     "build": "rollup -c ./rollup.config.js",
+    "dev": "rollup -c ./rollup.config.js -w",
     "lint": "eslint --ext .js ./src"
   },
   "repository": {
@@ -34,7 +35,8 @@
     "rollup-plugin-node-resolve": "^2.0.0",
     "rollup-plugin-replace": "^1.1.1",
     "rollup-plugin-svelte": "^1.6.0",
-    "rollup-plugin-uglify": "^1.0.1"
+    "rollup-plugin-uglify": "^1.0.1",
+    "rollup-watch": "^3.2.2"
   },
   "dependencies": {
     "history": "^4.5.1",
