@@ -23,8 +23,6 @@ const createRouter = (options) => {
     if (typeof Route === 'string') {
       return () => history.push(Route)
     }
-
-    return () => {}
   }
 
   const routeData = Object.keys(options)

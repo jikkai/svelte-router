@@ -15,6 +15,39 @@ Using yarn:
 $ yarn add svelte-router
 ```
 
+```html
+<div>
+  <Link to="/home">Home</Link>
+  <div id="app"></div>
+</div>
+
+<script>
+  import SvelteRouter from 'svelte-router'
+  import Home from './Home.html'
+
+  const router = createRouter({
+    '/': Home
+  })
+
+  export default {
+    onrender () {
+      router.start('#app')
+      // router.start(document.querySelector('#app'))
+    },
+
+    onteardown() {
+      router.teardown()
+    },
+
+    components: {
+      Link
+    }
+  }
+</script>
+
+
+</script>
+```
 
 ## TODO
 - [ ] Add unit test
