@@ -17,35 +17,44 @@ $ yarn add svelte-router
 
 ```html
 <div>
-  <Link to="/home">Home</Link>
+  <RouterLink to="/">Home</RouterLink>
+  <RouterLink to="/welcome">Welcome</RouterLink>
   <div id="app"></div>
 </div>
 
 <script>
   import SvelteRouter from 'svelte-router'
   import Home from './Home.html'
+  import Welcome from './Welcome.html'
 
-  const { createRouter, Link } = SvelteRouter
+  const { createRouter, RouterLink } = SvelteRouter
 
   const router = createRouter({
-    '/': Home
+    '/': Home,
+    '/welcome': Welcome
   })
 
   export default {
-    onrender () {
-      router.start('#app')
-      // router.start(document.querySelector('#app'))
+    oncreate () {
+      router.create('#app')
+      // router.create(document.querySelector('#app'))
     },
 
-    onteardown() {
-      router.teardown()
+    ondestroy () {
+      router.destroy()
     },
 
     components: {
-      Link
+      RouterLink
     }
   }
 </script>
+
+<style>
+  .router-link-active {
+    color: red;
+  }
+</style>
 ```
 
 ## TODO
