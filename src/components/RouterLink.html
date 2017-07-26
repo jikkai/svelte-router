@@ -11,16 +11,24 @@
     data () {
       return {
         to: '/',
-        active: ''
+        active: '',
+        event: null
       }
     },
     oncreate () {
-      const { pathname } = history.location
       this.setActivedClass()
 
-      window.addEventListener('hashchange', () => {
-        this.setActivedClass()
-      }, false)
+      const _this = this
+      this.set({
+        event () {
+          _this.setActivedClass()
+        }
+      })
+
+      window.addEventListener('hashchange', this.get('event'), false)
+    },
+    ondestroy () {
+      window.removeEventListener('hashchange', this.get('event'), false)
     },
     methods: {
       navigate ($e, to) {
