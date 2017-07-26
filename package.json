@@ -1,8 +1,8 @@
 {
   "name": "svelte-router",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple router for Svelte",
-  "main": "lib/index.js",
+  "main": "lib/svelte-router.js",
   "author": "Jikkai Xiao <sonne@asaki.me>",
   "license": "MIT",
   "scripts": {
