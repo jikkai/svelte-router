@@ -1,5 +1,5 @@
-import Link from './Link.html'
+import RouterLink from '~components/RouterLink.html'
 
-import createRouter from './createRouter'
+import createRouter from '~utils/create-router'
 
-export default { createRouter, Link }
+export default { createRouter, RouterLink }

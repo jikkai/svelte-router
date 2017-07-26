@@ -1,9 +1,0 @@
-{
-  "parserOptions": {
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "experimentalObjectRestSpread": true
-    }
-  },
-  "extends": "standard"
-}

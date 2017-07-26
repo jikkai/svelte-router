@@ -1,0 +1,47 @@
+<a href='#{{ to }}' class="{{active}}" on:click='navigate($e, to)'>
+  {{ yield }}
+</a>
+
+<script>
+  import pathToRegexp from 'path-to-regexp'
+  import history from '~utils/history'
+  const activedClassName = 'router-link-active'
+  
+  export default {
+    data () {
+      return {
+        to: '/',
+        active: ''
+      }
+    },
+    oncreate () {
+      const { pathname } = history.location
+      this.setActivedClass()
+
+      window.addEventListener('hashchange', () => {
+        this.setActivedClass()
+      }, false)
+    },
+    methods: {
+      navigate ($e, to) {
+        if ($e && e.preventDefault) $e.preventDefault()
+        if (to) {
+          const { pathname } = history.location
+
+          if (pathname !== to) {
+            history.push(to)
+          }
+        }
+      },
+
+      setActivedClass () {
+        const { pathname } = history.location
+        if (pathname === this.get('to')) {
+          this.set({ active: activedClassName })
+        } else {
+          this.set({ active: '' })
+        }
+      }
+    }
+  }
+</script>
