@@ -7,7 +7,9 @@ module.exports = {
   output: {
     path: path.join(__dirname, '../lib'),
     filename: 'svelte-router.js',
-    publicPath: './'
+    publicPath: './',
+    libraryTarget: 'umd',
+    library: 'SvelteRouter'
   },
   resolve: {
     extensions: ['.js', '.html', '.json'],
