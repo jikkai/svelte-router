@@ -4,6 +4,11 @@
 
 > Router component for Svelte
 
+This branch is for Svelte v1.8.1+. For useage with Svelte v1.8.0-, see the [0.1.x branch](https://github.com/jikkai/svelte-router/tree/0.1.x).
+
+## Docs
+[Comming soon...](https://jikkai.github.io/svelte-router)
+
 ## Installation
 Using npm:
 ```bash
@@ -15,6 +20,7 @@ Using yarn:
 $ yarn add svelte-router
 ```
 
+## Examples
 ```html
 <div>
   <RouterLink to="/">Home</RouterLink>
