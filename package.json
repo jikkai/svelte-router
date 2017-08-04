@@ -8,7 +8,8 @@
   "scripts": {
     "prebuild": "rimraf ./lib",
     "build": "webpack --config build/webpack.prod.js",
-    "dev": "nodemon build/server.js"
+    "dev": "nodemon build/server.js",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
