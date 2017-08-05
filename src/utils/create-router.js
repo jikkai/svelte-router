@@ -45,4 +45,8 @@ const createRouter = (options) => {
   }
 }
 
+createRouter.push = path => { history.push(path) }
+createRouter.replace = path => { history.replace(path) }
+createRouter.go = n => { history.go(n) }
+
 export default createRouter
