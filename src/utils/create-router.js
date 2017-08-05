@@ -1,4 +1,3 @@
-import pathToRegexp from 'path-to-regexp'
 import history from '~utils/history'
 
 const createRouter = (options) => {
@@ -13,8 +12,7 @@ const createRouter = (options) => {
       if (options.hasOwnProperty(path)) {
         if (location.pathname === path) {
           _content = new options[path]({
-            target: _target,
-            data: pathToRegexp.parse(path)
+            target: _target
           })
           break
         }

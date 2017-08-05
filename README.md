@@ -65,5 +65,4 @@ $ yarn add svelte-router
 
 ## TODO
 - [ ] Add unit test
-- [ ] Support BrowserHistory mode
 - [ ] Write a documentation
