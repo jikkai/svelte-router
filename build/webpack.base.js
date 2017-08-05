@@ -23,6 +23,12 @@ module.exports = {
   module: {
     rules: [
       {
+        enforce: 'pre',
+        test: /.js$/,
+        use: 'eslint-loader',
+        exclude: /node_modules/
+      },
+      {
         test: /\.(html|js)$/,
         use: 'babel-loader',
         include: [/src/, /example/],

@@ -1,5 +1,5 @@
 import App from './app.html'
 
-const app = new App({
+new App({
   target: document.querySelector('#example')
 })
