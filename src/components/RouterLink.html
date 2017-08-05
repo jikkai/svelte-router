@@ -1,4 +1,4 @@
-<a href='#{{ to }}' class="{{active}}" on:click='navigate($e, to)'>
+<a href='{{basePath}}{{ to }}' class="{{active}}" on:click='navigate(event, to)'>
   {{ yield }}
 </a>
 
@@ -11,28 +11,23 @@
     data () {
       return {
         to: '/',
+        basePath: '#',
         active: '',
         event: null
       }
     },
     oncreate () {
-      this.setActivedClass()
-
-      const _this = this
+      this.setActivedClass(history.location)
       this.set({
-        event () {
-          _this.setActivedClass()
-        }
+        event: history.listen(this.setActivedClass.bind(this))
       })
-
-      window.addEventListener('hashchange', this.get('event'), false)
     },
     ondestroy () {
-      window.removeEventListener('hashchange', this.get('event'), false)
+      this.get('event')()
     },
     methods: {
       navigate ($e, to) {
-        if ($e && e.preventDefault) $e.preventDefault()
+        if ($e && $e.preventDefault) $e.preventDefault()
         if (to) {
           const { pathname } = history.location
 
@@ -42,9 +37,8 @@
         }
       },
 
-      setActivedClass () {
-        const { pathname } = history.location
-        if (pathname === this.get('to')) {
+      setActivedClass (location) {
+        if (location.pathname === this.get('to')) {
           this.set({ active: activedClassName })
         } else {
           this.set({ active: '' })

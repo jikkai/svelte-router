@@ -2,9 +2,9 @@ import pathToRegexp from 'path-to-regexp'
 import history from '~utils/history'
 
 const createRouter = (options) => {
-  let _target
-  let _unlisten
-  let _content
+  let _target // target DOM
+  let _unlisten // history listener
+  let _content // route instance
 
   if (typeof Route === 'function') {
     return (options) => {
@@ -13,13 +13,12 @@ const createRouter = (options) => {
     }
   }
 
-  const handleRouteChange = () => {
-    if (_content && _content._fragment) _content.destroy()
-    const pathname = history.location.pathname
+  const handleRouteChange = (location) => {
+    if (_content) _content.destroy()
 
     for (let path in options) {
       if (options.hasOwnProperty(path)) {
-        if (pathname === path) {
+        if (location.pathname === path) {
           _content = new options[path]({
             target: _target,
             data: pathToRegexp.parse(path)
@@ -31,14 +30,21 @@ const createRouter = (options) => {
   }
 
   return {
+    /**
+     * create
+     * @param {HTMLElement} targetElement
+     */
     create (targetElement) {
       _target = typeof targetElement === 'string'
         ? document.querySelector(targetElement)
         : targetElement
+      _unlisten = history.listen(handleRouteChange)
 
-       _unlisten = history.listen(handleRouteChange)
-      handleRouteChange()
+      handleRouteChange(history.location)
     },
+    /**
+     * destory
+     */
     destroy () {
       if (_unlisten) {
         _unlisten()
