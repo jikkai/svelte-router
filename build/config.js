@@ -1,5 +1,5 @@
 module.exports = {
-  port: '6928',
+  port: '8880',
   title: 'Svelte Router',
   cssModules: false
 }

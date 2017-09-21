@@ -1,11 +1,11 @@
 import history from '~utils/history'
 
-const createRouter = (options) => {
+const createRouter = options => {
   let _target // target DOM
   let _unlisten // history listener
   let _content // route instance
 
-  const handleRouteChange = (location) => {
+  const handleRouteChange = location => {
     if (_content) _content.destroy()
 
     for (let path in options) {
