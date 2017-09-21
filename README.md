@@ -1,26 +1,32 @@
 # Svelte Router
+
 ![version](https://img.shields.io/npm/v/svelte-router.svg)
 ![license](https://img.shields.io/github/license/mashape/apistatus.svg)
 
 > Router component for Svelte
 
-This branch is for Svelte v1.8.1+. For useage with Svelte v1.8.0-, see the [0.1.x branch](https://github.com/jikkai/svelte-router/tree/0.1.x).
+This branch is for Svelte v1.8.1+. For usage with Svelte v1.8.0-, see the [0.1.x branch](https://github.com/jikkai/svelte-router/tree/0.1.x).
 
 ## Docs
+
 [Comming soon...](https://jikkai.github.io/svelte-router)
 
 ## Installation
+
 Using npm:
+
 ```bash
-$ npm install --save svelte-router
+npm install --save svelte-router
 ```
 
 Using yarn:
+
 ```bash
-$ yarn add svelte-router
+yarn add svelte-router
 ```
 
 ## Examples
+
 ```html
 <div>
   <RouterLink to="/">Home</RouterLink>
@@ -64,5 +70,6 @@ $ yarn add svelte-router
 ```
 
 ## TODO
+
 - [ ] Add unit test
 - [ ] Write a documentation
