@@ -1,9 +1,12 @@
 node_modules
-*.log
-.babelrc
-nodemon.json
-package-lock.json
-.DS_Store
 src
 example
 build
+
+.DS_Store
+.babelrc
+.eslintignore
+.eslintrc.js
+*.log
+nodemon.json
+package-lock.json
