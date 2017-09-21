@@ -1,4 +1,4 @@
-<a href='{{basePath}}{{ to }}' class="{{active}}" on:click='navigate(event, to)'>
+<a href='{{basePath}}{{to}}' class="{{active}}" on:click='navigate(event, to)'>
   <slot></slot>
 </a>
 
@@ -9,6 +9,7 @@
   export default {
     data () {
       return {
+        replace: false,
         to: '/',
         basePath: '#',
         active: '',
@@ -31,7 +32,11 @@
           const { pathname } = history.location
 
           if (pathname !== to) {
-            history.push(to)
+            if (this.get('replace')) {
+              history.replace(to)
+            } else {
+              history.push(to)
+            }
           }
         }
       },

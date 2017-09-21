@@ -1,6 +1,7 @@
 <div>
   <RouterLink to="/">Home</RouterLink>
   <RouterLink to="/welcome">Welcome</RouterLink>
+  <RouterLink to="/test/replace" replace>Replace</RouterLink>
   <div id="app"></div>
 </div>
 
@@ -8,12 +9,14 @@
   import SvelteRouter from '../src'
   import Home from './Home.html'
   import Welcome from './Welcome.html'
+  import Replace from './Replace.html'
 
   const { createRouter, RouterLink } = SvelteRouter
 
   const router = createRouter({
     '/': Home,
-    '/welcome': Welcome
+    '/welcome': Welcome,
+    '/test/replace': Replace
   })
 
   export default {
