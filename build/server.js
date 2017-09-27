@@ -8,7 +8,7 @@ const config = require('./config')
 const app = express()
 
 webpackConfig.entry.client = [
-  'webpack-hot-middleware/client',
+  'webpack-hot-middleware/client?reload=true',
   webpackConfig.entry.client
 ]
 
