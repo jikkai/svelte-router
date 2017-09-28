@@ -18,6 +18,9 @@
     '/welcome': Welcome,
     '/test/replace': Replace
   })
+  createRouter.listen(_ => {
+    console.log('router changed')
+  })
 
   export default {
     oncreate () {
