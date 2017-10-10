@@ -69,6 +69,19 @@ yarn add svelte-router
 </style>
 ```
 
+## API
+
+### createRouter
+
+* `push(path: string)`
+* `replace(path: string)`
+* `go(n: number)`
+* `listen(fn: function)`
+
+### RouterLink
+
+* `replace`: Boolean
+
 ## TODO
 
 - [ ] Add unit test
