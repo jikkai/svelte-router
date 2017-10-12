@@ -1,14 +1,6 @@
-import babel from 'rollup-plugin-babel'
-import svelte from 'rollup-plugin-svelte'
-import resolve from 'rollup-plugin-node-resolve'
-import eslint from 'rollup-plugin-eslint'
-import commonjs from 'rollup-plugin-commonjs'
-import replace from 'rollup-plugin-replace'
-import uglify from 'rollup-plugin-uglify'
-
 const pkg = require('./package.json')
 
-export default {
+module.exports = {
   input: './src/index.js',
   output: {
     file: pkg.main,
@@ -17,18 +9,18 @@ export default {
   },
   context: 'window',
   plugins: [
-    eslint({
+    require('rollup-plugin-eslint')({
       include: './src/**/*.js'
     }),
-    svelte(),
-    babel({
+    require('rollup-plugin-svelte')(),
+    require('rollup-plugin-babel')({
       exclude: 'node_modules/**'
     }),
-    commonjs(),
-    resolve(),
-    replace({
+    require('rollup-plugin-commonjs')(),
+    require('rollup-plugin-node-resolve')(),
+    require('rollup-plugin-replace')({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
     }),
-    uglify()
+    require('rollup-plugin-uglify')()
   ]
 }

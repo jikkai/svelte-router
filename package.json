@@ -8,7 +8,7 @@
   "scripts": {
     "prebuild": "rimraf ./lib",
     "build": "rollup -c",
-    "dev": "rollup -c -w",
+    "dev": "nodemon ./build/server.js",
     "prepublishOnly": "npm run build"
   },
   "repository": {
@@ -38,6 +38,9 @@
     "eslint-plugin-node": "^5.2.0",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
+    "koa": "^2.3.0",
+    "koa-router": "^7.2.1",
+    "nodemon": "^1.12.1",
     "rimraf": "^2.6.2",
     "rollup": "^0.50.0",
     "rollup-plugin-babel": "^3.0.2",

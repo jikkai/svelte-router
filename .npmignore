@@ -1,6 +1,7 @@
 node_modules
 src
 example
+build
 
 .DS_Store
 .babelrc
