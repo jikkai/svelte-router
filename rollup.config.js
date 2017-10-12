@@ -3,6 +3,7 @@ import svelte from 'rollup-plugin-svelte'
 import resolve from 'rollup-plugin-node-resolve'
 import eslint from 'rollup-plugin-eslint'
 import commonjs from 'rollup-plugin-commonjs'
+import replace from 'rollup-plugin-replace'
 import uglify from 'rollup-plugin-uglify'
 
 const pkg = require('./package.json')
@@ -25,6 +26,9 @@ export default {
     }),
     commonjs(),
     resolve(),
+    replace({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
+    }),
     uglify()
   ]
 }
