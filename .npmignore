@@ -1,12 +1,11 @@
 node_modules
 src
 example
-build
 
 .DS_Store
 .babelrc
 .eslintignore
-.eslintrc.js
-*.log
 nodemon.json
+*.log
+rollup.config.js
 package-lock.json

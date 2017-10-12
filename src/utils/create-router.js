@@ -1,4 +1,4 @@
-import history from '~utils/history'
+import history from './history'
 
 const createRouter = options => {
   let _target // target DOM

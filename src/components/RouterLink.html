@@ -1,9 +1,9 @@
-<a href='{{basePath}}{{to}}' class="{{active}}" on:click='navigate(event, to)'>
+<a href="{{basePath}}{{to}}" class="{{active}}" on:click="navigate(event, to)">
   <slot></slot>
 </a>
 
 <script>
-  import history from '~utils/history'
+  import history from '../utils/history'
   const activedClassName = 'router-link-active'
   
   export default {
