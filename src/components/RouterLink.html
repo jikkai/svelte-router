@@ -1,4 +1,4 @@
-<a href="{{basePath}}{{to}}" class="{{active}}" on:click="navigate(event, to)">
+<a href="{{basePath}}{{to}}" class="{{class}} {{active ? activeClass : ''}}" on:click="navigate(event, to)">
   <slot></slot>
 </a>
 
@@ -12,7 +12,9 @@
         replace: false,
         to: '/',
         basePath: '#',
-        active: '',
+        active: false,
+        class: '',
+        activeClass: activedClassName,
         event: null
       }
     },
@@ -42,11 +44,8 @@
       },
 
       setActivedClass (location) {
-        if (location.pathname === this.get('to')) {
-          this.set({ active: activedClassName })
-        } else {
-          this.set({ active: '' })
-        }
+        let active = location.pathname === this.get('to');
+        this.set({ active });
       }
     }
   }
