@@ -1,5 +1,4 @@
-<h1>Welcome Svelte</h1>
-<h2>Animal {{animal}}</h2>
+<h1>Welcome {{$name}}</h1>
 <button on:click="goHome()">Go Home</button>
 
 <script>
@@ -7,14 +6,9 @@
   const { createRouter } = SvelteRouter
 
   export default {
-    data () {
-      return {
-        animal: 'cat'
-      }
-    },
     oncreate () {
       setTimeout(() => {
-        this.set({ animal: this.store.animal })
+        console.log(this.store.get('name'))
       }, 1000)
     },
     methods: {

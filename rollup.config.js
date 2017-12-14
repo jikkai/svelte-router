@@ -12,7 +12,9 @@ module.exports = {
     require('rollup-plugin-eslint')({
       include: './src/**/*.js'
     }),
-    require('rollup-plugin-svelte')(),
+    require('rollup-plugin-svelte')({
+      store: true
+    }),
     require('rollup-plugin-babel')({
       exclude: 'node_modules/**'
     }),

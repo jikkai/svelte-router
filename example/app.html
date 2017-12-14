@@ -6,6 +6,7 @@
 </div>
 
 <script>
+  import { Store } from 'svelte/store'
   import SvelteRouter from '../src'
   import Home from './Home.html'
   import Welcome from './Welcome.html'
@@ -13,14 +14,9 @@
 
   const { createRouter, RouterLink } = SvelteRouter
 
-  const store = {
-    animal: 'dog',
-    sheep: 'baaah',
-    moo: {
-      cow: true,
-      foo: 'bar'
-    }
-  }
+  const store = new Store({
+    name: 'Everyone'
+  })
 
   const router = createRouter({
     '/': Home,
@@ -32,7 +28,7 @@
     },
     '/test/replace': Replace
   })
-  createRouter.listen(_ => {
+  createRouter.listen(() => {
     console.log('router changed')
   })
 

@@ -35,6 +35,7 @@ yarn add svelte-router
 </div>
 
 <script>
+  import { Store } from 'svelte/store'
   import SvelteRouter from 'svelte-router'
   import Home from './Home.html'
   import Welcome from './Welcome.html'
@@ -47,14 +48,14 @@ yarn add svelte-router
     '/welcome': Welcome,
     '/animal': {
       Component: Animal,
-      props: {
+      props: new Store({
         animal: 'dog',
         sheep: 'baaah',
         moo: {
           cow: true,
           foo: 'bar'
         }
-      }
+      })
     }
   })
 
