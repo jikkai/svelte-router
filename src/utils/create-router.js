@@ -5,6 +5,8 @@ const createRouter = options => {
   let _unlisten // history listener
   let _content // route instance
 
+  console.log(options);
+
   const handleRouteChange = location => {
     if (_content) _content.destroy()
 
