@@ -5,16 +5,17 @@ const createRouter = options => {
   let _unlisten // history listener
   let _content // route instance
 
-  console.log(options);
-
   const handleRouteChange = location => {
     if (_content) _content.destroy()
 
     for (let path in options) {
       if (options.hasOwnProperty(path)) {
         if (location.pathname === path) {
-          _content = new options[path]({
-            target: _target
+          let { Component, props } = options[path]
+          if (!Component) Component = options[path]
+          _content = new Component({
+            target: _target,
+            ...props
           })
           break
         }
