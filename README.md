@@ -38,12 +38,24 @@ yarn add svelte-router
   import SvelteRouter from 'svelte-router'
   import Home from './Home.html'
   import Welcome from './Welcome.html'
+  import Animal from './Animal.html'
 
   const { createRouter, RouterLink } = SvelteRouter
 
   const router = createRouter({
     '/': Home,
-    '/welcome': Welcome
+    '/welcome': Welcome,
+    '/animal': {
+      Component: Animal,
+      props: {
+        animal: 'dog',
+        sheep: 'baaah',
+        moo: {
+          cow: true,
+          foo: 'bar'
+        }
+      }
+    }
   })
 
   export default {
@@ -81,6 +93,11 @@ yarn add svelte-router
 ### RouterLink
 
 * `replace`: Boolean
+
+## Contributors
+
+* @rumpytim
+* @RobBrazier
 
 ## TODO
 
