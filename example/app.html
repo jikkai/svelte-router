@@ -2,6 +2,7 @@
   <RouterLink to="/">Home</RouterLink>
   <RouterLink to="/welcome">Welcome</RouterLink>
   <RouterLink to="/test/replace" replace>Replace</RouterLink>
+  <RouterLink to="/hello/world">Dynamic Route</RouterLink>
   <div id="app"></div>
 </div>
 
@@ -11,6 +12,8 @@
   import Home from './Home.html'
   import Welcome from './Welcome.html'
   import Replace from './Replace.html'
+  import Hello from './Hello.html'
+  import NotFound from './NotFound.html'
 
   const { createRouter, RouterLink } = SvelteRouter
 
@@ -26,7 +29,9 @@
         store
       }
     },
-    '/test/replace': Replace
+    '/test/replace': Replace,
+    '/hello/:name': Hello,
+    default: NotFound
   })
   createRouter.listen(() => {
     console.log('router changed')
