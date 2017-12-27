@@ -30,7 +30,14 @@
       }
     },
     '/test/replace': Replace,
-    '/hello/:name': Hello,
+    '/hello/:name': {
+      Component: Hello,
+      props: {
+        data: {
+          salutation: 'Hello'
+        }
+      },
+    },
     default: NotFound
   })
   createRouter.listen(() => {

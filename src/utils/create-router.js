@@ -29,10 +29,20 @@ const getPathVariables = (sections, matches) => {
 const getContent = (options, path, target, pathVariables) => {
   let { Component, props } = options[path]
   if (!Component) Component = options[path]
+  let extraData = {
+    data: pathVariables
+  }
+  if (Object.keys(props).indexOf('data') !== -1) {
+    for (let key in pathVariables) {
+      const value = pathVariables[key]
+      props.data[key] = value
+    }
+    extraData = {}
+  }
   return new Component({
     target: target,
     ...props,
-    data: pathVariables
+    ...extraData
   })
 }
 
