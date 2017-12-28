@@ -49,8 +49,8 @@
     "rollup-plugin-eslint": "^4.0.0",
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-plugin-replace": "^2.0.0",
-    "rollup-plugin-svelte": "^3.3.0",
+    "rollup-plugin-svelte": "^4.0.0",
     "rollup-plugin-uglify": "^2.0.1",
-    "svelte": "^1.48.0"
+    "svelte": "^1.49.3"
   }
 }
