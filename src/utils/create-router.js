@@ -30,13 +30,13 @@ const getContent = (options, path, target, pathVariables) => {
   let { Component, props } = options[path]
   if (!Component) Component = options[path]
   let extraData = {
-    data: pathVariables
-  }
-  if (Object.keys(props).indexOf('data') !== -1) {
-    for (let key in pathVariables) {
-      const value = pathVariables[key]
-      props.data[key] = value
+    data: {
+      path: pathVariables
     }
+  }
+  props = props || {}
+  if (Object.prototype.hasOwnProperty.call(props, 'data')) {
+    props.data['path'] = pathVariables
     extraData = {}
   }
   return new Component({
