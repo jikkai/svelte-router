@@ -1,25 +1,75 @@
 import history from './history'
 
+const DYNAMIC_PATH_REGEX = '[a-zA-Z]+'
+const DEFAULT_ROUTE = 'default'
+
+const getPathRegex = (sections) => {
+  return sections.map((value) => {
+    if (value.match(new RegExp(`:${DYNAMIC_PATH_REGEX}`)) !== null) {
+      return `([a-zA-Z0-9]+)`
+    }
+    return value
+  }).join('\\/')
+}
+
+const getPathVariables = (sections, matches) => {
+  const keys = sections.filter((value) => {
+    return value.match(new RegExp(`:${DYNAMIC_PATH_REGEX}`)) !== null
+  }).map((value) => {
+    return value.match(new RegExp(`:(${DYNAMIC_PATH_REGEX})`))[1]
+  })
+  const pathVariables = {}
+  keys.forEach((value, index) => {
+    const groupIndex = index + 1
+    pathVariables[value] = matches[groupIndex]
+  })
+  return pathVariables
+}
+
+const getContent = (options, path, target, pathVariables) => {
+  let { Component, props } = options[path]
+  if (!Component) Component = options[path]
+  let extraData = {
+    data: {
+      path: pathVariables
+    }
+  }
+  props = props || {}
+  if (Object.prototype.hasOwnProperty.call(props, 'data')) {
+    props.data['path'] = pathVariables
+    extraData = {}
+  }
+  return new Component({
+    target: target,
+    ...props,
+    ...extraData
+  })
+}
+
 const createRouter = options => {
   let _target // target DOM
   let _unlisten // history listener
   let _content // route instance
 
   const handleRouteChange = location => {
+    let found = false
     if (_content) _content.destroy()
 
     for (let path in options) {
-      if (options.hasOwnProperty(path)) {
-        if (location.pathname === path) {
-          let { Component, props } = options[path]
-          if (!Component) Component = options[path]
-          _content = new Component({
-            target: _target,
-            ...props
-          })
+      if (Object.prototype.hasOwnProperty.call(options, path)) {
+        const sections = path.split('/')
+        const regexPath = getPathRegex(sections)
+        const matches = location.pathname.match(new RegExp(`^${regexPath}$`))
+        if (matches !== null) {
+          const pathVariables = getPathVariables(sections, matches)
+          _content = getContent(options, path, _target, pathVariables)
+          found = true
           break
         }
       }
+    }
+    if (!found && options[DEFAULT_ROUTE]) {
+      _content = getContent(options, DEFAULT_ROUTE, _target, {})
     }
   }
 
