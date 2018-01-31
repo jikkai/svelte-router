@@ -7,10 +7,6 @@
 
 This branch is for Svelte v1.8.1+. For usage with Svelte v1.8.0-, see the [0.1.x branch](https://github.com/jikkai/svelte-router/tree/0.1.x).
 
-## Docs
-
-[Comming soon...](https://jikkai.github.io/svelte-router)
-
 ## Installation
 
 Using npm:
@@ -103,4 +99,3 @@ yarn add svelte-router
 ## TODO
 
 - [ ] Add unit test
-- [ ] Write a documentation
