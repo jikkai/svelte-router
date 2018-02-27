@@ -36,6 +36,7 @@ yarn add svelte-router
   import Home from './Home.html'
   import Welcome from './Welcome.html'
   import Animal from './Animal.html'
+  import NotFound from './NotFound.html'
 
   const { createRouter, RouterLink } = SvelteRouter
 
@@ -53,6 +54,9 @@ yarn add svelte-router
         }
       })
     }
+  },{
+    pathRegex: '[a-zA-Z]+',
+    defaultRoute: NotFound
   })
 
   export default {
