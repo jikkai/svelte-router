@@ -3,7 +3,7 @@ import history from './history'
 const getPathRegex = (sections, pathRegex) => {
   return sections.map((value) => {
     if (value.match(new RegExp(`:${pathRegex}`)) !== null) {
-      return `([a-zA-Z0-9]+)`
+      return `(${pathRegex})`
     }
     return value
   }).join('\\/')
@@ -48,7 +48,7 @@ const createRouter = (paths, options = {}) => {
   let _unlisten // history listener
   let _content // route instance
 
-  const pathRegex = options['pathRegex'] ? options['pathRegex'] : '[a-zA-Z]+'
+  const pathRegex = options['pathRegex'] ? options['pathRegex'] : '[a-zA-Z0-9]+'
   const defaultRoute = options['defaultRoute'] ? options['defaultRoute'] : 'default'
 
   const handleRouteChange = location => {
