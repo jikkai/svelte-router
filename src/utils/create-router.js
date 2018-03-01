@@ -3,7 +3,7 @@ import history from './history'
 const getPathRegex = (sections, pathRegex) => {
   return sections.map((value) => {
     if (value.match(new RegExp(`:${pathRegex}`)) !== null) {
-      return `(${pathRegex})`
+      return `([a-zA-Z0-9]+)`
     }
     return value
   }).join('\\/')
