@@ -53,7 +53,10 @@ const createRouter = options => {
 
   const handleRouteChange = location => {
     let found = false
-    if (_content) _content.destroy()
+    if (_content) {
+      _content.destroy()
+      _content = null
+    }
 
     for (let path in options) {
       if (Object.prototype.hasOwnProperty.call(options, path)) {
