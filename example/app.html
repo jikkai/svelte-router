@@ -36,9 +36,11 @@
         data: {
           salutation: 'Hello'
         }
-      },
-    },
-    default: NotFound
+      }
+    }
+  },{
+    pathRegex: '[a-zA-Z]+',
+    defaultRoute: NotFound
   })
   createRouter.listen(() => {
     console.log('router changed')
