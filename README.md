@@ -93,8 +93,9 @@ yarn add svelte-router
 
 ## Contributors
 
-* @rumpytim
-* @RobBrazier
+* [@rumpytim](https://github.com/rumpytim)
+* [@RobBrazier](https://github.com/RobBrazier)
+* [@stalkerg](https://github.com/stalkerg)
 
 ## TODO
 
