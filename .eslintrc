@@ -1,0 +1,18 @@
+{
+  "root": true,
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "extends": "standard",
+  "parser": "babel-eslint",
+  "rules": {
+    "no-console": 1
+  }
+}
