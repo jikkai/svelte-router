@@ -37,6 +37,9 @@ yarn add svelte-router
   import Welcome from './Welcome.html'
   import Animal from './Animal.html'
 
+  // import custom (browser) history
+  import history from './history'
+
   const { createRouter, RouterLink } = SvelteRouter
 
   const router = createRouter({
@@ -58,7 +61,7 @@ yarn add svelte-router
         }
       }
     }
-  })
+  }, history)
 
   export default {
     oncreate () {
