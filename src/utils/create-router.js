@@ -26,8 +26,8 @@ const getPathVariables = (sections, matches) => {
   return pathVariables
 }
 
-const getContent = (options, path, target, pathVariables) => {
-  let { Component, props } = options[path]
+const getContent = (options, path, target, pathVariables, onGlobalActivate) => {
+  let { Component, props, onActivate } = options[path]
   if (!Component) Component = options[path]
   let extraData = {
     data: {
@@ -39,14 +39,32 @@ const getContent = (options, path, target, pathVariables) => {
     props.data['path'] = pathVariables
     extraData = {}
   }
-  return new Component({
+  let component = new Component({
     target: target,
     ...props,
     ...extraData
   })
+
+  if (onActivate != null) {
+    onActivate({
+      path,
+      props,
+      component
+    })
+  }
+
+  if (onGlobalActivate != null) {
+    onGlobalActivate({
+      path,
+      props,
+      component
+    })
+  }
+
+  return component
 }
 
-const createRouter = options => {
+const createRouter = (options, onGlobalActivate) => {
   let _target // target DOM
   let _unlisten // history listener
   let _content // route instance
@@ -65,14 +83,14 @@ const createRouter = options => {
         const matches = location.pathname.match(new RegExp(`^${regexPath}$`))
         if (matches !== null) {
           const pathVariables = getPathVariables(sections, matches)
-          _content = getContent(options, path, _target, pathVariables)
+          _content = getContent(options, path, _target, pathVariables, onGlobalActivate)
           found = true
           break
         }
       }
     }
     if (!found && options[DEFAULT_ROUTE]) {
-      _content = getContent(options, DEFAULT_ROUTE, _target, {})
+      _content = getContent(options, DEFAULT_ROUTE, _target, {}, onGlobalActivate)
     }
   }
 
