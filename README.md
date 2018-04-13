@@ -44,14 +44,19 @@ yarn add svelte-router
     '/welcome': Welcome,
     '/animal': {
       Component: Animal,
-      props: new Store({
-        animal: 'dog',
-        sheep: 'baaah',
-        moo: {
-          cow: true,
-          foo: 'bar'
+      props: {
+        store: new Store({
+          animal: 'dog',
+          sheep: 'baaah',
+          moo: {
+            cow: true,
+            foo: 'bar'
+          }
+        }),
+        data: {
+          qwert: 'asdf'
         }
-      })
+      }
     }
   })
 
