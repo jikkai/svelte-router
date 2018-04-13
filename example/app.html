@@ -15,6 +15,9 @@
   import Hello from './Hello.html'
   import NotFound from './NotFound.html'
 
+  // import custom (browser) history
+  import history from './history'
+
   const { createRouter, RouterLink } = SvelteRouter
 
   const store = new Store({
@@ -39,7 +42,7 @@
       },
     },
     default: NotFound
-  })
+  }, history)
   createRouter.listen(() => {
     console.log('router changed')
   })

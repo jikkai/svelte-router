@@ -1,4 +1,4 @@
-import history from './history'
+import createDefaultHistory from 'history/createHashHistory'
 
 const DYNAMIC_PATH_REGEX = '[a-zA-Z]+'
 const DEFAULT_ROUTE = 'default'
@@ -46,10 +46,16 @@ const getContent = (options, path, target, pathVariables) => {
   })
 }
 
-const createRouter = options => {
+const createRouter = (options, customHistory) => {
   let _target // target DOM
   let _unlisten // history listener
   let _content // route instance
+  let history = customHistory || createDefaultHistory()
+
+  // define getter history proeprty
+  Object.defineProperty(this, 'history', {
+    get: () => history
+  })
 
   const handleRouteChange = location => {
     let found = false
