@@ -1,4 +1,4 @@
-<a href="{{basePath}}{{to}}" class="{{class}} {{active ? activeClass : ''}}" on:click="navigate(event, to)">
+<a href="{basePath}{to}" class="{class} {active ? activeClass : ''}" on:click="navigate(event, to)">
   <slot></slot>
 </a>
 
@@ -25,7 +25,7 @@
       })
     },
     ondestroy () {
-      this.get('event')()
+      this.get().event()
     },
     methods: {
       navigate ($e, to) {
@@ -34,7 +34,7 @@
           const { pathname } = history.location
 
           if (pathname !== to) {
-            if (this.get('replace')) {
+            if (this.get().replace) {
               history.replace(to)
             } else {
               history.push(to)
@@ -44,7 +44,7 @@
       },
 
       setActivedClass (location) {
-        let active = location.pathname === this.get('to');
+        let active = location.pathname === this.get().to;
         this.set({ active });
       }
     }

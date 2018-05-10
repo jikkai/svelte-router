@@ -27,8 +27,8 @@ const config = {
     babel({
       exclude: 'node_modules/**'
     }),
-    commonjs(),
     resolve(),
+    commonjs(),
     replace({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
       'process.env.APP_VERSION': JSON.stringify(pkg.version)
