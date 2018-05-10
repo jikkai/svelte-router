@@ -1,6 +1,6 @@
 {
   "presets": [
-    [ "env", {
+    [ "@babel/preset-env", {
       "modules": false,
       "targets": {
         "browsers": [
@@ -12,7 +12,6 @@
     }]
   ],
   "plugins": [
-    "external-helpers",
-    "transform-object-rest-spread"
+    "@babel/plugin-transform-spread"
   ]
 }
