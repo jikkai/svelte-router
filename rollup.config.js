@@ -1,6 +1,6 @@
 import serve from 'rollup-plugin-serve'
 import livereload from 'rollup-plugin-livereload'
-import eslint from 'rollup-plugin-eslint'
+import { eslint } from 'rollup-plugin-eslint'
 import svelte from 'rollup-plugin-svelte'
 import babel from 'rollup-plugin-babel'
 import commonjs from 'rollup-plugin-commonjs'
