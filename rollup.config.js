@@ -6,7 +6,7 @@ import babel from 'rollup-plugin-babel'
 import commonjs from 'rollup-plugin-commonjs'
 import resolve from 'rollup-plugin-node-resolve'
 import replace from 'rollup-plugin-replace'
-import uglify from 'rollup-plugin-uglify'
+import { uglify } from 'rollup-plugin-uglify'
 
 import pkg from './package.json'
 
@@ -24,15 +24,13 @@ const config = {
     svelte({
       store: true
     }),
-    babel({
-      exclude: 'node_modules/**'
-    }),
-    resolve(),
-    commonjs(),
+    babel(),
     replace({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
       'process.env.APP_VERSION': JSON.stringify(pkg.version)
-    })
+    }),
+    resolve(),
+    commonjs()
   ]
 }
 
