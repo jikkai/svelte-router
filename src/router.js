@@ -1,4 +1,4 @@
-import history from './history'
+import createHistory from './history'
 import {
   getPathRegex,
   getPathVariables,
@@ -6,6 +6,8 @@ import {
 } from './utils'
 
 const DEFAULT_ROUTE = 'default'
+
+let history
 
 class SvelteRouter {
   target = null
@@ -15,6 +17,10 @@ class SvelteRouter {
 
   constructor (options) {
     this.options = options
+    history = createHistory(options.mode)
+    Object.defineProperty(window, 'history', {
+      get: () => history
+    })
   }
 
   create (target) {
@@ -40,21 +46,21 @@ class SvelteRouter {
       this.content = null
     }
 
-    for (let path in this.options) {
-      if (Object.prototype.hasOwnProperty.call(this.options, path)) {
+    for (let path in this.options.routes) {
+      if (Object.prototype.hasOwnProperty.call(this.options.routes, path)) {
         const sections = path.split('/')
         const regexPath = getPathRegex(sections)
         const matches = location.pathname.match(new RegExp(`^${regexPath}$`))
         if (matches !== null) {
           const pathVariables = getPathVariables(sections, matches)
-          this.content = getContent(this.options, path, this.target, pathVariables)
+          this.content = getContent(this.options.routes, path, this.target, pathVariables)
           found = true
           break
         }
       }
     }
-    if (!found && this.options[DEFAULT_ROUTE]) {
-      this.content = getContent(this.options, DEFAULT_ROUTE, this.target, {})
+    if (!found && this.options.routes[DEFAULT_ROUTE]) {
+      this.content = getContent(this.options.routes, DEFAULT_ROUTE, this.target, {})
     }
   }
 }

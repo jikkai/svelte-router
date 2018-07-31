@@ -20,23 +20,27 @@
   })
 
   const router = new SvelteRouter({
-    '/': Home,
-    '/welcome': {
-      Component: Welcome,
-      props: {
-        store
-      }
-    },
-    '/test/replace': Replace,
-    '/hello/:name': {
-      Component: Hello,
-      props: {
-        data: {
-          salutation: 'Hello'
+    mode: 'hash',
+    // mode: 'history',
+    routes: {
+      '/': Home,
+      '/welcome': {
+        Component: Welcome,
+        props: {
+          store
         }
       },
-    },
-    default: NotFound
+      '/test/replace': Replace,
+      '/hello/:name': {
+        Component: Hello,
+        props: {
+          data: {
+            salutation: 'Hello'
+          }
+        },
+      },
+      default: NotFound
+    }
   })
   SvelteRouter.listen(() => {
     console.log('router changed')

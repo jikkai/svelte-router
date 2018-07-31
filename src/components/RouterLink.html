@@ -3,7 +3,6 @@
 </a>
 
 <script>
-  import history from '../history'
   const activedClassName = 'router-link-active'
   
   export default {
@@ -11,7 +10,7 @@
       return {
         replace: false,
         to: '/',
-        basePath: '#',
+        basePath: '',
         active: false,
         class: '',
         activeClass: activedClassName,

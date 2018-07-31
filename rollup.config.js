@@ -43,6 +43,7 @@ if (process.env.NODE_ENV === 'production') {
   config.input = './example/main.js'
   config.plugins.unshift(
     serve({
+      historyApiFallback: true,
       contentBase: ['lib', 'build']
     }),
     livereload('release')
