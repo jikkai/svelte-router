@@ -1,5 +1,7 @@
 import RouterLink from './components/RouterLink.html'
 
-import createRouter from './utils/create-router'
+import Router from './router'
 
-export default { createRouter, RouterLink }
+Router.RouterLink = RouterLink
+
+export default Router

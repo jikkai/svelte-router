@@ -1,10 +1,10 @@
-<div>
+<main>
   <RouterLink to="/">Home</RouterLink>
   <RouterLink to="/welcome">Welcome</RouterLink>
   <RouterLink to="/test/replace" replace>Replace</RouterLink>
   <RouterLink to="/hello/world">Dynamic Route</RouterLink>
   <div id="app"></div>
-</div>
+</main>
 
 <script>
   import { Store } from 'svelte/store'
@@ -15,13 +15,11 @@
   import Hello from './Hello.html'
   import NotFound from './NotFound.html'
 
-  const { createRouter, RouterLink } = SvelteRouter
-
   const store = new Store({
     name: 'Everyone'
   })
 
-  const router = createRouter({
+  const router = new SvelteRouter({
     '/': Home,
     '/welcome': {
       Component: Welcome,
@@ -40,14 +38,13 @@
     },
     default: NotFound
   })
-  createRouter.listen(() => {
+  SvelteRouter.listen(() => {
     console.log('router changed')
   })
 
   export default {
     oncreate () {
       router.create('#app')
-      // router.create(document.querySelector('#app'))
     },
 
     ondestroy () {
@@ -55,7 +52,7 @@
     },
 
     components: {
-      RouterLink
+      RouterLink: SvelteRouter.RouterLink
     }
   }
 </script>
