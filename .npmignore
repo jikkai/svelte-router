@@ -4,9 +4,7 @@ example
 build
 
 .DS_Store
-.babelrc
+babel.config.js
 .eslintignore
-nodemon.json
 *.log
 rollup.config.js
-package-lock.json
