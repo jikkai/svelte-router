@@ -37,17 +37,6 @@
   :global(html, body, #example) {
     height: 100%;
   }
-  :global(pre) {
-    position: relative;
-  }
-  :global(pre::after) {
-    content: attr(data-lang);
-    position: absolute;
-    top: 0;
-    right: .5em;
-    color: var(--default);
-    font-size: 12px;
-  }
   :global(#app) {
     max-width: 740px;
     margin: auto;

@@ -1,3 +1,15 @@
 <section>
-  <h1>API</h1>
+  {@html content}
 </section>
+
+<script>
+  import content from '../../docs/guide/API.md'
+
+  export default {
+    data () {
+      return {
+        content
+      }
+    }
+  }
+</script>

@@ -1,8 +1,15 @@
 <section>
-  <h1>Introduction</h1>
-
-  <p>
-    Svelte Router is an unofficial router for <a href="https://svelte.technology" rel="noopener">Svelte</a>.
-    Just for fun :)
-  </p>
+  {@html content}
 </section>
+
+<script>
+  import content from '../docs/Introduction.md'
+
+  export default {
+    data () {
+      return {
+        content
+      }
+    }
+  }
+</script>

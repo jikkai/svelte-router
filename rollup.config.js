@@ -2,12 +2,14 @@ import serve from 'rollup-plugin-serve'
 import livereload from 'rollup-plugin-livereload'
 import { eslint } from 'rollup-plugin-eslint'
 import postcss from 'rollup-plugin-postcss'
+import md from 'rollup-plugin-md'
 import svelte from 'rollup-plugin-svelte'
 import babel from 'rollup-plugin-babel'
 import commonjs from 'rollup-plugin-commonjs'
 import resolve from 'rollup-plugin-node-resolve'
 import replace from 'rollup-plugin-replace'
 import { uglify } from 'rollup-plugin-uglify'
+import copy from 'rollup-plugin-copy'
 
 import pkg from './package.json'
 
@@ -37,10 +39,24 @@ const config = {
 }
 
 if (process.env.NODE_ENV === 'production') {
-  config.input = './src/index.js'
   config.plugins.push(
     uglify()
   )
+  if (process.env.APP_ENV === 'js') {
+    config.input = './src/index.js'
+  } else if (process.env.APP_ENV === 'docs') {
+    config.input = './example/main.js'
+    config.output = {
+      file: 'public/svelte-router.js',
+      format: 'iife'
+    }
+    config.plugins.unshift(
+      md(),
+      copy({
+        './build/index.html': './public/index.html'
+      })
+    )
+  }
 } else if (process.env.NODE_ENV === 'development') {
   config.input = './example/main.js'
   config.plugins.unshift(
@@ -48,7 +64,8 @@ if (process.env.NODE_ENV === 'production') {
       historyApiFallback: true,
       contentBase: ['lib', 'build']
     }),
-    livereload('release')
+    livereload('release'),
+    md()
   )
 }
 

@@ -1,15 +1,15 @@
 <section>
-  <h1>Installation</h1>
-
-  <h2>npm</h2>
-  <p>
-    Installing with npm is recommended and it works seamlessly with webpack.
-  </p>
-  <pre data-lang="sh"><code>npm install svelte-router</code></pre>
-
-  <h2>CDN</h2>
-  <p>
-
-  </p>
-  <pre data-lang="html"><code>&lt;script src="//unpkg.com/svelte-router/lib/svelte-router.js"&gt;&lt;/script&gt;</code></pre>
+  {@html content}
 </section>
+
+<script>
+  import content from '../docs/Installation.md'
+
+  export default {
+    data () {
+      return {
+        content
+      }
+    }
+  }
+</script>
