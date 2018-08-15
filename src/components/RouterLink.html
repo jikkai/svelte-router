@@ -1,9 +1,13 @@
-<a href="{basePath}{to}" class="{class} {active ? activeClass : ''}" on:click="navigate(event, to)">
+<a
+  href="{basePath}{to}"
+  class="{computedClassName}"
+  on:click="navigate(event, to)"
+>
   <slot></slot>
 </a>
 
 <script>
-  const activedClassName = 'router-link-active'
+  const activeClassName = 'router-link-active'
   
   export default {
     data () {
@@ -11,24 +15,25 @@
         replace: false,
         to: '/',
         basePath: '',
-        active: false,
-        class: '',
-        activeClass: activedClassName,
+        isActive: false,
+        className: '',
+        activeClassName,
         event: null
       }
     },
     oncreate () {
-      this.setActivedClass(history.location)
+      this.setActiveClass(history.location)
       this.set({
-        event: history.listen(this.setActivedClass.bind(this))
+        event: history.listen(this.setActiveClass.bind(this))
       })
     },
     ondestroy () {
       this.get().event()
     },
     methods: {
-      navigate ($e, to) {
-        if ($e && $e.preventDefault) $e.preventDefault()
+      navigate (event, to) {
+        event.preventDefault()
+
         if (to) {
           const { pathname } = history.location
 
@@ -42,9 +47,19 @@
         }
       },
 
-      setActivedClass (location) {
-        let active = location.pathname === this.get().to;
-        this.set({ active });
+      setActiveClass (location) {
+        let isActive = location.pathname === this.get().to
+        this.set({ isActive })
+      }
+    },
+    computed: {
+      computedClassName ({ isActive, className, activeClassName }) {
+        const classes = []
+
+        if (typeof className === 'string') classes.push(className)
+        if (isActive) classes.push(activeClassName)
+
+        return classes.join(' ')
       }
     }
   }

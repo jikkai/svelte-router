@@ -1,0 +1,78 @@
+<aside class="sr-menu">
+  <ul>
+    <li>
+      <RouterLink to="/">Introduction</RouterLink>
+    </li>
+    <li>
+      <RouterLink to="/installation">Installation</RouterLink>
+    </li>
+    <li>
+      <div class="sr-menu-group">
+        <span>Getting Started</span>
+        <ul>
+          <li>
+            <RouterLink to="/guide/basic-usage" replace>Basic Usage</RouterLink>
+          </li>
+          <li>
+            <RouterLink to="/guide/api">API</RouterLink>
+          </li>
+        </ul>
+      </div>
+    </li>
+    <li>
+      <div class="sr-menu-group">
+        <span>Component</span>
+        <ul>
+          <li>
+            <RouterLink to="/component/router-link" replace>RouterLink</RouterLink>
+          </li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+</aside>
+
+<script>
+  import SvelteRouter from '../../src'
+
+  export default {
+    components: {
+      RouterLink: SvelteRouter.RouterLink
+    }
+  }
+</script>
+
+<style>
+  .sr-menu {
+    width: 240px;
+    height: 100%;
+    box-shadow: 0 0 15px 0 rgba(0, 0, 0, .05);
+    overflow: auto;
+  }
+
+  .sr-menu ul {
+    padding: 0;
+    list-style: none;
+  }
+
+  .sr-menu :global(a) {
+    padding: 6px 0 6px 24px;
+    color: var(--sliver);
+    display: block;
+  }
+  .sr-menu :global(a.router-link-active) {
+    color: var(--primary);
+    box-shadow: 4px 0px 0px inset var(--primary);
+  }
+
+  .sr-menu-group span {
+    padding: 6px 0 6px 24px;
+    color: var(--sliver);
+    font-weight: bold;
+    display: block;
+  }
+
+  .sr-menu-group :global(a) {
+    padding-left: 36px;
+  }
+</style>

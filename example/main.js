@@ -1,4 +1,5 @@
 import App from './app.html'
+import 'alius'
 
 // eslint-disable-next-line
 new App({
