@@ -18,7 +18,8 @@
         isActive: false,
         className: '',
         activeClassName,
-        event: null
+        event: null,
+        match: ''
       }
     },
     oncreate () {
@@ -48,7 +49,22 @@
       },
 
       setActiveClass (location) {
-        let isActive = location.pathname === this.get().to
+        const { match, to } = this.get()
+        
+        let isActive = location.pathname === to
+        if (!isActive) {
+          const matchArr = match.split('/')
+          const pathArr = location.pathname.split('/')
+          if (matchArr.length === pathArr.length) {
+            let flag = false
+            for (let i = 0; i < matchArr.length; i++) {
+              flag = matchArr[i] === pathArr[i] || matchArr[i].indexOf(':') === 0
+              if (!flag) break
+            }
+            isActive = flag
+          }
+        }
+
         this.set({ isActive })
       }
     },

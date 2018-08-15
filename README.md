@@ -101,7 +101,3 @@ yarn add svelte-router
 * [@rumpytim](https://github.com/rumpytim)
 * [@RobBrazier](https://github.com/RobBrazier)
 * [@stalkerg](https://github.com/stalkerg)
-
-## TODO
-
-- [ ] Add unit test
