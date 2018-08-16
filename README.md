@@ -85,7 +85,7 @@ yarn add svelte-router
 
 ## API
 
-### createRouter
+### SvelteRouter
 
 * `push(path: string)`
 * `replace(path: string)`
@@ -94,7 +94,8 @@ yarn add svelte-router
 
 ### RouterLink
 
-* `replace`: Boolean
+* `replace`: boolean
+* `match`: string
 
 ## Contributors
 

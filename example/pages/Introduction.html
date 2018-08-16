@@ -1,8 +1,12 @@
 <section>
   {@html content}
+
+  <Button on:click="handleClick()">Getting Started</Button>
 </section>
 
 <script>
+  import SvelteRouter from '../../src'
+  import Button from '../components/button.html'
   import content from '../docs/Introduction.md'
 
   export default {
@@ -10,6 +14,14 @@
       return {
         content
       }
+    },
+    methods: {
+      handleClick () {
+        SvelteRouter.push('/guide/basic-usage')
+      }
+    },
+    components: {
+      Button
     }
   }
 </script>

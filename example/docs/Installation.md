@@ -8,6 +8,14 @@ Installing with npm is recommended and it works seamlessly with webpack.
 npm install svelte-router
 ```
 
+## yarn
+
+Long live Yarn.
+
+```sh
+yarn add svelte-router
+```
+
 ## CDN
 
 ```html

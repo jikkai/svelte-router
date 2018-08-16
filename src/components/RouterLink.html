@@ -1,5 +1,5 @@
 <a
-  href="{basePath}{to}"
+  href="{to}"
   class="{computedClassName}"
   on:click="navigate(event, to)"
 >
@@ -14,7 +14,6 @@
       return {
         replace: false,
         to: '/',
-        basePath: '',
         isActive: false,
         className: '',
         activeClassName,
