@@ -1,34 +1,39 @@
-<a href="{basePath}{to}" class="{class} {active ? activeClass : ''}" on:click="navigate(event, to)">
+<a
+  href="{to}"
+  class="{computedClassName}"
+  on:click="navigate(event, to)"
+>
   <slot></slot>
 </a>
 
 <script>
-  const activedClassName = 'router-link-active'
+  const activeClassName = 'router-link-active'
   
   export default {
     data () {
       return {
         replace: false,
         to: '/',
-        basePath: '',
-        active: false,
-        class: '',
-        activeClass: activedClassName,
-        event: null
+        isActive: false,
+        className: '',
+        activeClassName,
+        event: null,
+        match: ''
       }
     },
     oncreate () {
-      this.setActivedClass(history.location)
+      this.setActiveClass(history.location)
       this.set({
-        event: history.listen(this.setActivedClass.bind(this))
+        event: history.listen(this.setActiveClass.bind(this))
       })
     },
     ondestroy () {
       this.get().event()
     },
     methods: {
-      navigate ($e, to) {
-        if ($e && $e.preventDefault) $e.preventDefault()
+      navigate (event, to) {
+        event.preventDefault()
+
         if (to) {
           const { pathname } = history.location
 
@@ -42,9 +47,34 @@
         }
       },
 
-      setActivedClass (location) {
-        let active = location.pathname === this.get().to;
-        this.set({ active });
+      setActiveClass (location) {
+        const { match, to } = this.get()
+        
+        let isActive = location.pathname === to
+        if (!isActive) {
+          const matchArr = match.split('/')
+          const pathArr = location.pathname.split('/')
+          if (matchArr.length === pathArr.length) {
+            let flag = false
+            for (let i = 0; i < matchArr.length; i++) {
+              flag = matchArr[i] === pathArr[i] || matchArr[i].indexOf(':') === 0
+              if (!flag) break
+            }
+            isActive = flag
+          }
+        }
+
+        this.set({ isActive })
+      }
+    },
+    computed: {
+      computedClassName ({ isActive, className, activeClassName }) {
+        const classes = []
+
+        if (typeof className === 'string') classes.push(className)
+        if (isActive) classes.push(activeClassName)
+
+        return classes.join(' ')
       }
     }
   }

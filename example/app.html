@@ -1,49 +1,23 @@
-<main>
-  <RouterLink to="/">Home</RouterLink>
-  <RouterLink to="/welcome">Welcome</RouterLink>
-  <RouterLink to="/test/replace" replace>Replace</RouterLink>
-  <RouterLink to="/hello/world">Dynamic Route</RouterLink>
-  <div id="app"></div>
-</main>
+<Header></Header>
+<section class="sr-container">
+  <Menu></Menu>
+  <main class="sr-main">
+    <div id="app"></div>
+  </main>
+</section>
 
 <script>
-  import { Store } from 'svelte/store'
+  import prism from  'prismjs/prism'
   import SvelteRouter from '../src'
-  import Home from './pages/Home.html'
-  import Welcome from './pages/Welcome.html'
-  import Replace from './pages/Replace.html'
-  import Hello from './pages/Hello.html'
-  import NotFound from './pages/NotFound.html'
+  import routes from './routes'
+  import Header from './components/header.html'
+  import Menu from './components/menu.html'
 
-  const store = new Store({
-    name: 'Everyone'
-  })
-
-  const router = new SvelteRouter({
-    mode: 'hash',
-    // mode: 'history',
-    routes: {
-      '/': Home,
-      '/welcome': {
-        Component: Welcome,
-        props: {
-          store
-        }
-      },
-      '/test/replace': Replace,
-      '/hello/:name': {
-        Component: Hello,
-        props: {
-          data: {
-            salutation: 'Hello'
-          }
-        },
-      },
-      default: NotFound
-    }
-  })
+  const router = new SvelteRouter(routes)
   SvelteRouter.listen(() => {
-    console.log('router changed')
+    setTimeout(() => {
+      prism.highlightAll()
+    })
   })
 
   export default {
@@ -56,13 +30,30 @@
     },
 
     components: {
-      RouterLink: SvelteRouter.RouterLink
+      Header,
+      Menu
     }
   }
 </script>
 
 <style>
-  :global(.router-link-active) {
-    color: red;
+  :global(html, body, #example) {
+    height: 100%;
+  }
+  :global(#app) {
+    max-width: 740px;
+    margin: auto;
+  }
+
+  .sr-container {
+    height: calc(100% - 64px);
+    display: flex;
+  }
+
+  .sr-main {
+    width: calc(100% - 240px);
+    height: 100%;
+    padding: 12px 36px;
+    overflow: auto;
   }
 </style>

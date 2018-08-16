@@ -85,7 +85,7 @@ yarn add svelte-router
 
 ## API
 
-### createRouter
+### SvelteRouter
 
 * `push(path: string)`
 * `replace(path: string)`
@@ -94,14 +94,11 @@ yarn add svelte-router
 
 ### RouterLink
 
-* `replace`: Boolean
+* `replace`: boolean
+* `match`: string
 
 ## Contributors
 
 * [@rumpytim](https://github.com/rumpytim)
 * [@RobBrazier](https://github.com/RobBrazier)
 * [@stalkerg](https://github.com/stalkerg)
-
-## TODO
-
-- [ ] Add unit test

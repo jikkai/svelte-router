@@ -1,0 +1,13 @@
+<button class="alius-button is-primary" on:click="handleClick()">
+  <slot></slot>
+</button>
+
+<script>
+  export default {
+    methods: {
+      handleClick () {
+        this.fire('click')
+      }
+    }
+  }
+</script>
