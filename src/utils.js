@@ -1,4 +1,4 @@
-const DYNAMIC_PATH_REGEX = '[a-zA-Z]+'
+const DYNAMIC_PATH_REGEX = '[0-9A-Za-z._-]+'
 
 export const getContent = (options, path, target, pathVariables) => {
   let { Component, props } = options[path]
@@ -37,7 +37,7 @@ export const getPathVariables = (sections, matches) => {
 export const getPathRegex = sections => {
   return sections.map((value) => {
     if (value.match(new RegExp(`:${DYNAMIC_PATH_REGEX}`)) !== null) {
-      return `([a-zA-Z0-9]+)`
+      return `([0-9A-Za-z._-]+)`
     }
     return value
   }).join('\\/')
