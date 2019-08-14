@@ -44,8 +44,6 @@ It is the first step that is troublesome.
       }]
     })
 
-    router.init()
-
     return {
       destroy () {
         router.destroy()

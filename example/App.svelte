@@ -28,8 +28,6 @@
       })
     })
 
-    router.init()
-
     return {
       destroy () {
         router.destroy()

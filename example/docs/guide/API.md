@@ -35,12 +35,6 @@ const router = new SvelteRouter({
 
 ## Router Instance Methods
 
-### init
-
-```javascript
-router.init()
-```
-
 ### destroy
 
 ```javascript

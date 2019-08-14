@@ -3,11 +3,6 @@ import pathToRegexp from 'path-to-regexp'
 
 class SvelteRouter {
   constructor ({ target, mode = 'hash', routes = [] }) {
-    this.target = typeof target === 'string' ? document.querySelector(target) : target
-    this.routes = routes
-    this.$listener = null
-    this.$content = null
-
     let history
     switch (mode) {
       case 'hash':
@@ -30,17 +25,19 @@ class SvelteRouter {
     SvelteRouter.goBack = () => history.goBack()
     SvelteRouter.goForward = () => history.goForward()
     SvelteRouter.listen = fn => history.listen(fn)
-  }
 
-  init () {
-    this.listener = SvelteRouter.history.listen(this.handleRouteChange.bind(this))
+    this.$content = null
+    this.target = typeof target === 'string' ? document.querySelector(target) : target
+    this.routes = routes
+    this.$listener = SvelteRouter.history.listen(this.handleRouteChange.bind(this))
+
     this.handleRouteChange(SvelteRouter.history.location)
   }
 
   destroy () {
     if (this.listener) {
-      this.listener()
-      this.listener = null
+      this.$listener()
+      this.$listener = null
     }
   }
 

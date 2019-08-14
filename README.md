@@ -48,8 +48,6 @@ yarn add svelte-router
       }]
     })
 
-    router.init()
-
     return {
       destroy () {
         router.destroy()
