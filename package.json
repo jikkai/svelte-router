@@ -28,7 +28,7 @@
     "plugins"
   ],
   "peerDependencies": {
-    "svelte": "^2.4.0"
+    "svelte": "^3.0.0"
   },
   "dependencies": {
     "history": "^4.9.0",
