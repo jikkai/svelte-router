@@ -51,6 +51,7 @@ class SvelteRouter {
       const regexp = pathToRegexp(route.path)
       if (regexp.test(pathname)) {
         matchedRoute = route
+        break
       }
     }
 

@@ -39,7 +39,7 @@ It is the first step that is troublesome.
         path: '/bar',
         component: Bar
       }, {
-        path: '*',
+        path: '(.*)',
         component: Foo
       }]
     })

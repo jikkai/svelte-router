@@ -18,9 +18,9 @@ export default [{
   path: '/guide/api',
   component: API
 }, {
-  path: '/component/router',
+  path: '/component/link',
   component: Link
 }, {
-  path: '*',
+  path: '(.*)',
   component: NotFound
 }]

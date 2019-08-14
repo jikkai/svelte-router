@@ -27,7 +27,7 @@ const router = new SvelteRouter({
     path: '/welcome',
     component: Welcome
   }, {
-    path: '*',
+    path: '(.*)',
     component: NotFound
   }]
 })
