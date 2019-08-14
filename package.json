@@ -1,6 +1,6 @@
 {
   "name": "svelte-router",
-  "version": "3.0.0-alpha.1",
+  "version": "3.0.0-alpha.2",
   "description": "A simple router for Svelte",
   "main": "lib/svelte-router.js",
   "author": "Jikkai Xiao <sonne@asaki.me>",
@@ -36,8 +36,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
-    "@babel/plugin-proposal-class-properties": "^7.5.5",
-    "@babel/plugin-transform-spread": "^7.2.2",
     "@babel/preset-env": "^7.5.5",
     "alius": "0.0.1",
     "babel-eslint": "^10.0.2",

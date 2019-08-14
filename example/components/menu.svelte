@@ -11,7 +11,10 @@
         <span>Getting Started</span>
         <ul>
           <li>
-            <Link to="/guide/basic-usage" replace>Basic Usage</Link>
+            <Link to="/guide/basic-usage">Basic Usage</Link>
+          </li>
+          <li>
+            <Link to="/guide/passing-props">Passing Props</Link>
           </li>
           <li>
             <Link to="/guide/api">API</Link>
@@ -24,7 +27,7 @@
         <span>Component</span>
         <ul>
           <li>
-            <Link to="/component/link" replace>Link</Link>
+            <Link to="/component/link">Link</Link>
           </li>
         </ul>
       </div>

@@ -29,13 +29,13 @@ class SvelteRouter {
     this.$content = null
     this.target = typeof target === 'string' ? document.querySelector(target) : target
     this.routes = routes
-    this.$listener = SvelteRouter.history.listen(this.handleRouteChange.bind(this))
+    this.$listener = history.listen(this.handleRouteChange.bind(this))
 
-    this.handleRouteChange(SvelteRouter.history.location)
+    this.handleRouteChange(history.location)
   }
 
   destroy () {
-    if (this.listener) {
+    if (this.$listener) {
       this.$listener()
       this.$listener = null
     }
@@ -54,10 +54,11 @@ class SvelteRouter {
 
     if (matchedRoute && matchedRoute.component) {
       if (this.$content) this.$content.$destroy()
-      const Component = matchedRoute.component
+      const { component: Component, props } = matchedRoute
 
       this.$content = new Component({
-        target: this.target
+        target: this.target,
+        props
       })
     }
   }
