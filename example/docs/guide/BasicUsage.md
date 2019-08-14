@@ -2,50 +2,54 @@
 
 It is the first step that is troublesome.
 
-## Foo.html
+## Foo.svelte
 
 ```html
 <h1>Foo</h1>
 ```
 
-## Bar.html
+## Bar.svelte
 
 ```html
 <h1>Bar</h1>
 ```
 
-## App.html
+## App.svelte
 
 ```html
 <div>
-  <RouterLink to="/foo">Foo</RouterLink>
-  <RouterLink to="/bar">Bar</RouterLink>
-  <div id="app"></div>
+  <Link to="/foo">Foo</Link>
+  <Link to="/bar">Bar</Link>
+  <div use:create></div>
 </div>
 
 <script>
-  import SvelteRouter from 'svelte-router'
-  import Foo from './Foo.html'
-  import Bar from './Bar.html'
+  import SvelteRouter, { Link } from 'svelte-router'
+  import Foo from './Foo.svelte'
+  import Bar from './Bar.svelte'
 
-  const router = new SvelteRouter({
-    routes: {
-      '/foo': Foo,
-      '/bar': Bar
-    }
-  })
+  function create (node) {
+    const router = new SvelteRouter({
+      target: node,
+      mode: 'hash',
+      routes: [{
+        path: '/foo',
+        component: Foo
+      }, {
+        path: '/bar',
+        component: Bar
+      }, {
+        path: '*',
+        component: Foo
+      }]
+    })
 
-  export default {
-    oncreate () {
-      router.create('#app')
-    },
+    router.init()
 
-    ondestroy () {
-      router.destroy()
-    },
-
-    components: {
-      RouterLink: SvelteRouter.RouterLink
+    return {
+      destroy () {
+        router.destroy()
+      }
     }
   }
 </script>
@@ -60,7 +64,7 @@ It is the first step that is troublesome.
 ## main.js
 
 ```javascript
-import App from './App.html'
+import App from './App.svelte'
 
 new App({
   target: document.querySelector('#main')

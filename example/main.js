@@ -1,4 +1,4 @@
-import App from './app.html'
+import App from './App'
 import 'alius'
 import 'prismjs/themes/prism-okaidia.css'
 

@@ -1,18 +1,26 @@
-import Introduction from './pages/Introduction.html'
-import Installation from './pages/Installation.html'
-import BasicUsage from './pages/guide/BasicUsage.html'
-import API from './pages/guide/API.html'
-import RouterLink from './pages/component/RouterLink.html'
-import NotFound from './pages/NotFound.html'
+import Introduction from './pages/Introduction'
+import Installation from './pages/Installation'
+import BasicUsage from './pages/guide/BasicUsage'
+import API from './pages/guide/API'
+import Link from './pages/component/Link'
+import NotFound from './pages/NotFound'
 
-export default {
-  mode: 'hash',
-  routes: {
-    '/': Introduction,
-    '/installation': Installation,
-    '/guide/basic-usage': BasicUsage,
-    '/guide/api': API,
-    '/component/router-link': RouterLink,
-    default: NotFound
-  }
-}
+export default [{
+  path: '/',
+  component: Introduction
+}, {
+  path: '/installation',
+  component: Installation
+}, {
+  path: '/guide/basic-usage',
+  component: BasicUsage
+}, {
+  path: '/guide/api',
+  component: API
+}, {
+  path: '/component/router-link',
+  component: Link
+}, {
+  path: '*',
+  component: NotFound
+}]

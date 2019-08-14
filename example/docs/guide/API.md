@@ -2,6 +2,10 @@
 
 ## Router Construction Options
 
+### target
+
+* type: `string` | `HTMLElement`
+
 ### mode
 
 * type: `string`
@@ -10,42 +14,31 @@
 
 ### routes
 
-* type: `object`
+* type: `array`
 
 ```javascript
-import { Store } from 'svelte/store'
-
 const router = new SvelteRouter({
-  routes: {
-    '/': Home,
-    '/welcome': Welcome,
-    '/animal': {
-      Component: Animal,
-      props: {
-        store: new Store({
-          animal: 'dog',
-          sheep: 'baaah',
-          moo: {
-            cow: true,
-            foo: 'bar'
-          }
-        }),
-        data: {
-          qwert: 'asdf'
-        }
-      }
-    },
-    default: NotFound
-  }
+  target: '#app',
+  mode: 'hash',
+  routes: [{
+    path: '/',
+    component: Home
+  }, {
+    path: '/welcome',
+    component: Welcome
+  }, {
+    path: '*',
+    component: NotFound
+  }]
 })
 ```
 
 ## Router Instance Methods
 
-### create
+### init
 
 ```javascript
-router.create(string | HTMLElement)
+router.init()
 ```
 
 ### destroy
@@ -72,6 +65,18 @@ SvelteRouter.replace(path: string)
 
 ```javascript
 SvelteRouter.go(n: number)
+```
+
+### goBack
+
+```javascript
+SvelteRouter.goBack()
+```
+
+### goForward
+
+```javascript
+SvelteRouter.goForward()
 ```
 
 ### listen

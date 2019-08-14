@@ -1,37 +1,39 @@
 <Header></Header>
 <section class="sr-container">
   <Menu></Menu>
+
   <main class="sr-main">
-    <div id="app"></div>
+    <div use:create></div>
   </main>
 </section>
 
 <script>
   import prism from  'prismjs/prism'
+
   import SvelteRouter from '../src'
   import routes from './routes'
-  import Header from './components/header.html'
-  import Menu from './components/menu.html'
+  import Header from './components/header'
+  import Menu from './components/menu'
 
-  const router = new SvelteRouter(routes)
-  SvelteRouter.listen(() => {
-    setTimeout(() => {
-      prism.highlightAll()
+  function create (node) {
+    const router = new SvelteRouter({
+      target: node,
+      mode: 'hash',
+      routes
     })
-  })
 
-  export default {
-    oncreate () {
-      router.create('#app')
-    },
+    SvelteRouter.listen(() => {
+      setTimeout(() => {
+        prism.highlightAll()
+      })
+    })
 
-    ondestroy () {
-      router.destroy()
-    },
+    router.init()
 
-    components: {
-      Header,
-      Menu
+    return {
+      destroy () {
+        router.destroy()
+      }
     }
   }
 </script>

@@ -5,7 +5,7 @@
 
 > Router component for Svelte
 
-This branch is for Svelte v1.8.1+. For usage with Svelte v1.8.0-, see the [0.1.x branch](https://github.com/jikkai/svelte-router/tree/0.1.x).
+This branch is for Svelte v3.0.0+. For usage with Svelte v1.8.0+, see the [v2 branch](https://github.com/jikkai/svelte-router/tree/v2). For usage with Svelte v1.8.0-, see the [0.1.x branch](https://github.com/jikkai/svelte-router/tree/0.1.x).
 
 ## Installation
 
@@ -25,53 +25,35 @@ yarn add svelte-router
 
 ```html
 <div>
-  <RouterLink to="/">Home</RouterLink>
-  <RouterLink to="/welcome">Welcome</RouterLink>
-  <div id="app"></div>
+  <Link to="/">Home</Link>
+  <Link to="/welcome">Welcome</Link>
+  <div use:create></div>
 </div>
 
 <script>
-  import { Store } from 'svelte/store'
-  import SvelteRouter from 'svelte-router'
-  import Home from './Home.html'
-  import Welcome from './Welcome.html'
-  import Animal from './Animal.html'
+  import SvelteRouter, { Link } from 'svelte-router'
+  import Home from './Home.svelte'
+  import Welcome from './Welcome.svelte'
 
-  const router = new SvelteRouter({
-    mode: 'hash',
-    routes: {
-      '/': Home,
-      '/welcome': Welcome,
-      '/animal': {
-        Component: Animal,
-        props: {
-          store: new Store({
-            animal: 'dog',
-            sheep: 'baaah',
-            moo: {
-              cow: true,
-              foo: 'bar'
-            }
-          }),
-          data: {
-            qwert: 'asdf'
-          }
-        }
+  function create (node) {
+    const router = new SvelteRouter({
+      target: node,
+      mode: 'hash',
+      routes: [{
+        path: '/',
+        component: Home
+      }, {
+        path: '/welcome',
+        component: Welcome
+      }]
+    })
+
+    router.init()
+
+    return {
+      destroy () {
+        router.destroy()
       }
-    }
-  })
-
-  export default {
-    oncreate () {
-      router.create('#app')
-    },
-
-    ondestroy () {
-      router.destroy()
-    },
-
-    components: {
-      RouterLink: SvelteRouter.RouterLink
     }
   }
 </script>
@@ -90,12 +72,16 @@ yarn add svelte-router
 * `push(path: string)`
 * `replace(path: string)`
 * `go(n: number)`
+* `goBack()`
+* `goForward()`
 * `listen(fn: function)`
 
-### RouterLink
+### Link
 
+* `to`: string
 * `replace`: boolean
-* `match`: string
+* `className`: string
+* `activeClassName`: string
 
 ## Contributors
 

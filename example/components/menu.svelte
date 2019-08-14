@@ -1,20 +1,20 @@
 <aside class="sr-menu">
   <ul>
     <li>
-      <RouterLink to="/">Introduction</RouterLink>
+      <Link to="/">Introduction</Link>
     </li>
     <li>
-      <RouterLink to="/installation">Installation</RouterLink>
+      <Link to="/installation">Installation</Link>
     </li>
     <li>
       <div class="sr-menu-group">
         <span>Getting Started</span>
         <ul>
           <li>
-            <RouterLink to="/guide/basic-usage" replace>Basic Usage</RouterLink>
+            <Link to="/guide/basic-usage" replace>Basic Usage</Link>
           </li>
           <li>
-            <RouterLink to="/guide/api">API</RouterLink>
+            <Link to="/guide/api">API</Link>
           </li>
         </ul>
       </div>
@@ -24,7 +24,7 @@
         <span>Component</span>
         <ul>
           <li>
-            <RouterLink to="/component/router-link" replace>RouterLink</RouterLink>
+            <Link to="/component/router-link" replace>Link</Link>
           </li>
         </ul>
       </div>
@@ -33,13 +33,7 @@
 </aside>
 
 <script>
-  import SvelteRouter from '../../src'
-
-  export default {
-    components: {
-      RouterLink: SvelteRouter.RouterLink
-    }
-  }
+  import { Link } from '../../src'
 </script>
 
 <style>

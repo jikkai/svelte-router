@@ -1,35 +1,40 @@
-import createHistory from './history'
-import {
-  getPathRegex,
-  getPathVariables,
-  getContent
-} from './utils'
-
-const DEFAULT_ROUTE = 'default'
-
-let history
+import { createBrowserHistory, createHashHistory } from 'history'
+import pathToRegexp from 'path-to-regexp'
 
 class SvelteRouter {
-  target = null
-  listener = null
-  content = null
-  options = {}
+  constructor ({ target, mode = 'hash', routes = [] }) {
+    this.target = typeof target === 'string' ? document.querySelector(target) : target
+    this.routes = routes
+    this.$listener = null
+    this.$content = null
 
-  constructor (options) {
-    this.options = options
-    history = createHistory(options.mode)
-    Object.defineProperty(window, 'history', {
-      get: () => history
-    })
+    let history
+    switch (mode) {
+      case 'hash':
+        history = createHashHistory()
+        break
+      case 'history':
+        history = createBrowserHistory()
+        break
+      default:
+        history = createHashHistory()
+        break
+    }
+
+    SvelteRouter.__VERSION__ = process.env.APP_VERSION
+    SvelteRouter.mode = mode
+    SvelteRouter.history = history
+    SvelteRouter.push = path => history.push(path)
+    SvelteRouter.replace = path => history.replace(path)
+    SvelteRouter.go = n => history.go(n)
+    SvelteRouter.goBack = () => history.goBack()
+    SvelteRouter.goForward = () => history.goForward()
+    SvelteRouter.listen = fn => history.listen(fn)
   }
 
-  create (target) {
-    this.target = typeof target === 'string'
-      ? document.querySelector(target)
-      : target
-
-    this.listener = history.listen(this.handleRouteChange)
-    this.handleRouteChange(history.location)
+  init () {
+    this.listener = SvelteRouter.history.listen(this.handleRouteChange.bind(this))
+    this.handleRouteChange(SvelteRouter.history.location)
   }
 
   destroy () {
@@ -39,37 +44,25 @@ class SvelteRouter {
     }
   }
 
-  handleRouteChange = location => {
-    let found = false
-    if (this.content) {
-      this.content.destroy()
-      this.content = null
-    }
+  handleRouteChange ({ pathname }) {
+    let matchedRoute
 
-    for (let path in this.options.routes) {
-      if (Object.prototype.hasOwnProperty.call(this.options.routes, path)) {
-        const sections = path.split('/')
-        const regexPath = getPathRegex(sections)
-        const matches = location.pathname.match(new RegExp(`^${regexPath}$`))
-        if (matches !== null) {
-          const pathVariables = getPathVariables(sections, matches)
-          this.content = getContent(this.options.routes, path, this.target, pathVariables)
-          found = true
-          break
-        }
+    for (const route of this.routes) {
+      const regexp = pathToRegexp(route.path)
+      if (regexp.test(pathname)) {
+        matchedRoute = route
       }
     }
-    if (!found && this.options.routes[DEFAULT_ROUTE]) {
-      this.content = getContent(this.options.routes, DEFAULT_ROUTE, this.target, {})
+
+    if (matchedRoute && matchedRoute.component) {
+      if (this.$content) this.$content.$destroy()
+      const Component = matchedRoute.component
+
+      this.$content = new Component({
+        target: this.target
+      })
     }
   }
 }
-
-SvelteRouter.push = path => { history.push(path) }
-SvelteRouter.replace = path => { history.replace(path) }
-SvelteRouter.go = n => { history.go(n) }
-SvelteRouter.listen = fn => { history.listen(fn) }
-
-SvelteRouter.__VERSION__ = process.env.APP_VERSION
 
 export default SvelteRouter

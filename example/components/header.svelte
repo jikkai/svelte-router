@@ -1,17 +1,11 @@
 <header class="sr-header">
-  <RouterLink to="/">
+  <Link to="/">
     <h1>Svelte Router</h1>
-  </RouterLink>
+  </Link>
 </header>
 
 <script>
-  import SvelteRouter from '../../src'
-
-  export default {
-    components: {
-      RouterLink: SvelteRouter.RouterLink
-    }
-  }
+  import { Link } from '../../src'
 </script>
 
 <style>

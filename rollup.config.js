@@ -17,7 +17,8 @@ const config = {
   output: {
     file: pkg.main,
     format: 'umd',
-    name: 'SvelteRouter'
+    name: 'SvelteRouter',
+    exports: 'named'
   },
   context: 'window',
   plugins: [
@@ -25,16 +26,19 @@ const config = {
       include: './src/**/*.js'
     }),
     postcss(),
-    svelte({
-      store: true
-    }),
-    babel(),
     replace({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
       'process.env.APP_VERSION': JSON.stringify(pkg.version)
     }),
-    resolve(),
-    commonjs()
+    resolve({
+      extensions: ['.js', '.svelte', '.md']
+    }),
+    svelte(),
+    commonjs(),
+    babel({
+      externalHelpers: true,
+      extensions: ['.js', '.mjs', '.svelte']
+    })
   ]
 }
 
@@ -53,7 +57,10 @@ if (process.env.NODE_ENV === 'production') {
     config.plugins.unshift(
       md(),
       copy({
-        './build/index.html': './public/index.html'
+        targets: [{
+          src: './build/index.html',
+          dest: './public'
+        }]
       })
     )
   }
