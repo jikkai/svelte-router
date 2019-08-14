@@ -24,7 +24,7 @@
         <span>Component</span>
         <ul>
           <li>
-            <Link to="/component/router-link" replace>Link</Link>
+            <Link to="/component/link" replace>Link</Link>
           </li>
         </ul>
       </div>

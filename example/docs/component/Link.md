@@ -10,3 +10,13 @@
 | replace | `boolean` | `false` |
 | className | `string` | `''` |
 | activeClassName | `string` | `'router-link-active'` |
+
+## Example
+
+```html
+<Link to="/foo">go Foo</Link>
+
+<script>
+  import { Link } from 'svelte-router'
+</script>
+```
