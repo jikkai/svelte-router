@@ -1,4 +1,4 @@
-import Link from './components/Link'
+import Link from './components/Link.svelte'
 import Router from './router'
 
 export { Link }
